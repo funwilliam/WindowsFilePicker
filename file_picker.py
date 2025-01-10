@@ -148,8 +148,9 @@ def select_items(select_mode: Literal['folder', 'file', 'multi-files'], buffer_s
         flag = GetOpenFileName(ctypes.byref(ofn))
         # 如果用戶選擇文件
         if flag:
+            files = []
             # 獲取緩衝區內容
-            result = buffer[:].split("\0")
+            result = [item for item in buffer[:].split("\0") if item]
             # 如果選擇多個文件
             if len(result) > 1:
                 # 第一個項目是資料夾路徑
